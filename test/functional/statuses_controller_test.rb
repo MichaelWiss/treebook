@@ -43,7 +43,7 @@ class StatusesControllerTest < ActionController::TestCase
     sign_in users(:michael)
 
     assert_difference('Status.count') do
-      post :create, status: { content: @status.content, user_id: users(:jim).id }
+      post :create, status: { content: @status.content, user_id: users(:michael).id }
     end
 
     assert_redirected_to status_path(assigns(:status))
@@ -73,7 +73,9 @@ class StatusesControllerTest < ActionController::TestCase
     assert_redirected_to status_path(assigns(:status))
   end
 
-  test "should update status for the current user when logged in" do
+  
+
+   test "should update status for the current user when logged in" do
     sign_in users(:michael)
     put :update, id: @status, status: { content: @status.content, user_id: users(:michael).id }
     assert_redirected_to status_path(assigns(:status))
